@@ -1,9 +1,7 @@
-import {serve} from "https://deno.land/std@0.122.0/http/server.ts";
 import {Datareader} from "./datafile.ts"
 
 const listener = Deno.listen({port: 5000});
 const dataloader = new Datareader()
-
 async function getResponse( reqinput: Request){
     console.log(reqinput)//reqinput muss als input ein dataset sein mit aufbau: {artDesZugriffs(w/r),[Schreibelement/Lesekriterien]}
     //TODO Abfrage des Schreibzugriffs

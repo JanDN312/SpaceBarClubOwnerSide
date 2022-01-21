@@ -1,0 +1,19 @@
+{
+    "elements":[
+    {
+        "NameID":"1",
+        "value1":12,
+        "value2": 5
+    },
+    {
+        "NameID":"2",
+        "value1":2,
+        "value2": 8
+    },
+    {
+        "NameID":"3",
+        "value1":125,
+        "value2": 52
+    }
+    ]
+}

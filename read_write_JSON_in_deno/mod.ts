@@ -1,8 +1,11 @@
-import { readJson, readJsonSync } from 'https://deno.land/x/jsonfile/mod.ts';
+import { readJson, readJsonSync,
+         writeJson, writeJsonSync} from 'https://deno.land/x/jsonfile/mod.ts';
+
 const path = './fruits.json';
 let data;
 
-data = readJsonSync(path)
+//data = readJsonSync(path)
+//console.log(typeof data);
+//console.log(data);
 
-console.log(typeof data);
-console.log(data);
+writeJsonSync(path, {"fruit": 'banana', "size": 30 , "metric": 'cm'})

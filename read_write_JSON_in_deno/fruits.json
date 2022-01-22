@@ -1,5 +1,1 @@
-{
-    "fruit": "Apple",
-    "size": "Large",
-    "color": "Red"
-}
+{"fruit":"banana","size":30,"metric":"cm"}

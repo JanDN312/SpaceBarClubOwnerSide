@@ -1,0 +1,1 @@
+Beispiel JSON-Datei wird gelesen. Der Output Typ ist ein Object als Uint8Array.

@@ -8,3 +8,4 @@ Wenn Server gestartet ist, einfach localhost:8000 im Browser eingeben und voila!
     --> wechsel auf oak-version v9 hat geholfen
 
 2) Nach der Erstellung der Unterseiten kommt ein Error: Source code could not be parsed: Unexpected token '.'
+    --> Reihenfolge des Imports in home entscheidend??

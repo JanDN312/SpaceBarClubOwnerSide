@@ -19,7 +19,7 @@ export const register = async (ctx: RouterContext) => {
 
 export const postRegister = async (ctx: RouterContext) => {
     //ctx.response.body = await renderFileToString(`${Deno.cwd()}/views/home.ejs`, {});
-    const {value} = await ctx.request.body();
+    const {value} = ctx.request.body({type:"form-data"});
     const name = value.get('name');
     const username = value.get('username');
     const password = value.get('password');

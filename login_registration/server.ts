@@ -1,5 +1,5 @@
 import {Application, Router} from "https://deno.land/x/oak@v9.0.0/mod.ts";
-import {home, login, postLogin, register, postRegister, logout, protectedRoute,} from "./routes.ts";
+import {home, login, postLogin, register, postRegister, logout, protectedRoute} from "./routes.ts";
 
 const app = new Application();
 

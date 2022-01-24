@@ -1,6 +1,6 @@
 Der Versuch Login/Registrierung zu bauen...
 
-deno run --allow-net --allow-read server.ts
+deno run --allow-net --allow-read --unstable server.ts
 
 Wenn Server gestartet ist, einfach localhost:8000 im Browser eingeben und voila! Es läuft!
 

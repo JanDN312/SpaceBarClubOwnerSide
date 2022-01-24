@@ -2,5 +2,6 @@
     "deno.enable":true,
     "deno.suggest.imports.hosts":{
         "deno.land":false
-    }
+    },
+    "liveServer.settings.port": 5501
 }

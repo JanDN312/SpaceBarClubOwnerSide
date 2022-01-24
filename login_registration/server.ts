@@ -8,9 +8,9 @@ const router = new Router();
 router
     .get('/', home)
     .get('/login', login)
-    .get('/login', postLogin)
+    .post('/login', postLogin)
     .get('/register', register)
-    .get('/register', postRegister)
+    .post('/register', postRegister)
     .get('/logout', logout)
     .get('/protected', protectedRoute)
     ;

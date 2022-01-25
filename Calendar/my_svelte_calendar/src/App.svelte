@@ -25,6 +25,10 @@
 		appointmentShowing = false;
 	}
 
+	const setAppt = (e) => {
+		console.log(e.detail)
+	}
+
 </script>
 
 
@@ -33,7 +37,10 @@
 	<!--Show TDL only on calendar click, no TDL on default (false)-->
 	<Calendar on:click={openAppointment}/>
 	{#if appointmentShowing}
-		<Appointments on:modalClose={closeAppointment} {dateID} {dateHeading}/>
+		<Appointments on:modalClose={closeAppointment} 
+						on:addAppt={setAppt}
+						{dateID} 
+						{dateHeading}/>
 	{/if}
 </main>
 

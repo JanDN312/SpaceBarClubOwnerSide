@@ -12,14 +12,23 @@
   }
 
   const dispatch = createEventDispatcher();
-  
+
+  const submitAppointmentDetails = () => {
+    dispatch('addAppt', appointmentDetails);
+    // reset properties
+    appointmentDetails = {
+      location: "",
+      hours: "",
+      minutes: "",
+    }
+  }
 </script>
 
 
 
 <section>
-  <form method="post"
-      id={dateID}>
+  <form id={dateID}
+        on:submit|preventDefault={submitAppointmentDetails}>
       
     <!-- Closing Box for TDL-->
     <div id="close_cont">

@@ -14,14 +14,15 @@
 		makeDateHeading();
 	}
 
-	const closeAppointment = () => {
-		appointmentShowing = false;
+	const makeDateHeading = () => {
+		let dateAsHeading = dateID.replace(/_/g, " ");
+		let date = new Date(`${dateAsHeading}`);
+		return dateHeading = date.toLocaleString("en-US", {day: 'numeric', month: 'long', year: 'numeric'} );
+		//console.log(dateAsHeading)
 	}
 
-	const makeDateHeading = () => {
-		let dateAsHeading = dateID
-		return dateAsHeading
-		//console.log(dateAsHeading)
+	const closeAppointment = () => {
+		appointmentShowing = false;
 	}
 
 </script>
@@ -32,7 +33,7 @@
 	<!--Show TDL only on calendar click, no TDL on default (false)-->
 	<Calendar on:click={openAppointment}/>
 	{#if appointmentShowing}
-		<Appointments on:click={closeAppointment}/>
+		<Appointments on:click={closeAppointment} {dateID} {dateHeading}/>
 	{/if}
 </main>
 

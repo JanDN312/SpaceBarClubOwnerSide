@@ -1,7 +1,7 @@
 <script>
 
   export let dateID;
-  export let dateAsHeading;
+  export let dateHeading;
 
 </script>
 
@@ -17,7 +17,8 @@
     </div>
 
     <div id="myDIV" class="header">
-        <h1>{dateAsHeading}</h1>
+      <h1>My Appointments!</h1>
+        <h1>{dateHeading}</h1>
         <input type="text" id="myInput" placeholder="Title...">
         <span onclick="newElement()" class="addBtn">Add</span>
     </div>

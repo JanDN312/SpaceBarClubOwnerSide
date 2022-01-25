@@ -1,5 +1,5 @@
 <script>
-import { listen_dev } from "svelte/internal";
+//import { listen_dev } from "svelte/internal";
 
 	const date = new Date();
 
@@ -39,6 +39,26 @@ import { listen_dev } from "svelte/internal";
 	let currentDay = date.getDate();
 	$: currentDay = currentDay
 	$: console.log(`Current Day: ${currentDay}`);
+
+	// Define click functionality for previousMonth and nextMonth
+	// simply decrement and increment monthIndex, respectively
+	const prevMonth = () => {
+		
+		if (monthIndex <= 0) {
+			year -= 1;
+			return monthIndex = 11;
+		}
+		return monthIndex -= 1;
+	}
+
+	const nextMonth = () => {
+		if (monthIndex >= 11) {
+			year += 1;
+			return monthIndex = 0
+		}
+		monthIndex += 1;
+	}
+
 </script>
 
 <main>
@@ -49,8 +69,8 @@ import { listen_dev } from "svelte/internal";
 
 	<div class="month">
 		<ul>
-			<li class="prev">&#10094;</li>
-			<li class="next">&#10095;</li>
+			<li class="prev" on:click={prevMonth}>&#10094;</li>
+			<li class="next" on:click={nextMonth}>&#10095;</li>
 			<li>{month}<br>
 				<span style="font-size:18px">{year}</span></li>
 		</ul>
@@ -82,8 +102,10 @@ import { listen_dev } from "svelte/internal";
 	</ul>
 </main>
 
+
 <style>
-	/*main {
+	/* From Template
+		main {
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
@@ -131,12 +153,14 @@ import { listen_dev } from "svelte/internal";
 	.month .prev {
 	float: left;
 	padding-top: 10px;
+	cursor: pointer;
 	}
 
 	/* Next button */
 	.month .next {
 	float: right;
 	padding-top: 10px;
+	cursor: pointer;
 	}
 
 	/* Weekdays (Mon-Sun) */

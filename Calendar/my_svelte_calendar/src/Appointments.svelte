@@ -9,7 +9,7 @@
         <h2>My To Do List</h2>
         <input type="text" id="myInput" placeholder="Title...">
         <span onclick="newElement()" class="addBtn">Add</span>
-      </div>
+    </div>
       
       <ul id="myUL">
         <li>Hit the gym</li>
@@ -28,6 +28,7 @@
     /* Include the padding and border in an element's total width and height */
 * {
   box-sizing: border-box;
+  width: 60%;
 }
 
 /* Remove margins and padding from the list */

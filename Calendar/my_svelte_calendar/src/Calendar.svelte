@@ -58,9 +58,14 @@
 		monthIndex += 1;
 	}
 
+
 	$: console.log(`Today: ${currentDay.year} ${monthNames[currentDay.month]} ${currentDay.date} ${dayNames[currentDay.day]}`)
 	$: console.log(`Calendar: ${year} ${month}\nFirst day: ${dayNames[firstDayIndex]}\nNumber of days: ${numberOfDays}`)
 </script>
+
+
+
+
 
 <main>
 	<!-- from template...
@@ -98,36 +103,19 @@
 			<li></li>
 			{:else}
 				<!-- :active soll das heutige Datum highlighten-->
-				<li class:active={i === currentDay+(firstDayIndex-1)}>
-					{i - firstDayIndex +1}</li>
+				<li class:active={i === currentDay+(firstDayIndex-1)}
+				on:click>
+				{i - firstDayIndex +1}</li>
 			{/if}
 		{/each}
 	</ul>
 </main>
 
 
+
+
+
 <style>
-	/* From Template
-		main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}*/
-
 	ul {list-style-type: none;}
 	body {font-family: Verdana, sans-serif;}
 
@@ -185,6 +173,7 @@
 	padding: 10px 0;
 	background: #eee;
 	margin: 0;
+	cursor: pointer;
 	}
 
 	.days li {

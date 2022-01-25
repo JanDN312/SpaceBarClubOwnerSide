@@ -33,7 +33,7 @@
 	<!--Show TDL only on calendar click, no TDL on default (false)-->
 	<Calendar on:click={openAppointment}/>
 	{#if appointmentShowing}
-		<Appointments on:click={closeAppointment} {dateID} {dateHeading}/>
+		<Appointments on:modalClose={closeAppointment} {dateID} {dateHeading}/>
 	{/if}
 </main>
 

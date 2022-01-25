@@ -25,16 +25,13 @@
 	$: day = dayNames[dayIndex];
 	$: console.log(`Current Day as String: ${day}`);
 
-	$: firstDayIndex = new Date(year, monthIndex).getDay();
+	// For the firstDayIndex we give year and monthIndex and the 1 means we want the FIRST Day in the .getDay() function
+	$: firstDayIndex = new Date(year, monthIndex, 1).getDay();
 	$: console.log(`First Day Index: ${firstDayIndex}\n(Sunday - Saturday = 0 - 6)`);
 
+	// For the numberOfDays we give year and monthIndex and the 0 means we want the LAST Day in the .getDate() function
 	$: numberOfDays = new Date(year, monthIndex+1, 0).getDate();
 	$: console.log(`Number of Days per Month: ${numberOfDays}`);
-	// Check via console if dates are correct 
-	//$: console.log(`${year}, ${month}, ${date.getDate()}`)
-	//$: console.log(`FIRST DAY INDEX: ${firstDayIndex}`)
-	//$: console.log(`HOW MANY DAYS: ${numberOfDays}`)
-
 </script>
 
 <main>
@@ -53,18 +50,19 @@
 	</div>
 
 	<ul class="weekdays">
+		<!-- Sunday needs to be first due to the DateTimeObject indexing!-->
+		<li>Su</li>
 		<li>Mo</li>
 		<li>Tu</li>
 		<li>We</li>
 		<li>Th</li>
 		<li>Fr</li>
 		<li>Sa</li>
-		<li>Su</li>
 	</ul>
 
 	<ul class="days">
-		{#each Array(25) as _, i}
-		<li>{i}</li>
+		{#each Array(numberOfDays + firstDayIndex) as _, i}
+		<li>{i - firstDayIndex}</li>
 		{/each}
 	</ul>
 </main>

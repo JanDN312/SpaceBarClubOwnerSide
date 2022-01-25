@@ -34,6 +34,11 @@ import { listen_dev } from "svelte/internal";
 	// For the numberOfDays we give year and monthIndex and the 0 means we want the LAST Day in the .getDate() function
 	$: numberOfDays = new Date(year, monthIndex+1, 0).getDate();
 	$: console.log(`Number of Days per Month: ${numberOfDays}`);
+
+	// Create a constant for the current day to highlight the current day in the calendar
+	let currentDay = date.getDate();
+	$: currentDay = currentDay
+	$: console.log(`Current Day: ${currentDay}`);
 </script>
 
 <main>
@@ -71,7 +76,7 @@ import { listen_dev } from "svelte/internal";
 			{#if i < firstDayIndex}
 			<li></li>
 			{:else}
-				<li>{i - firstDayIndex +1}</li>
+				<li class:active={i === currentDay+(firstDayIndex-1)}>{i - firstDayIndex +1}</li>
 			{/if}
 		{/each}
 	</ul>
@@ -166,7 +171,7 @@ import { listen_dev } from "svelte/internal";
 	}
 
 	/* Highlight the "current" day */
-	.days li .active {
+	.active {
 	padding: 5px;
 	background: #1abc9c;
 	color: white !important

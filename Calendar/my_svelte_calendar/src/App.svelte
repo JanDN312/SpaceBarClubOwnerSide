@@ -1,4 +1,6 @@
 <script>
+import { listen_dev } from "svelte/internal";
+
 	const date = new Date();
 
 	// Console: DatetimeObject Year/Month/Date/Day
@@ -61,8 +63,16 @@
 	</ul>
 
 	<ul class="days">
+		<!--Create a loop for the days
+		substract the amount of firstDayIndex (results in negative numbers in the beginning) 
+		and the first day of the month starts with 0 (therefore add +1 to i)-->
 		{#each Array(numberOfDays + firstDayIndex) as _, i}
-		<li>{i - firstDayIndex}</li>
+			<!--Create if clause and remove negative numbers and 0 from the layout-->
+			{#if i < firstDayIndex}
+			<li></li>
+			{:else}
+				<li>{i - firstDayIndex +1}</li>
+			{/if}
 		{/each}
 	</ul>
 </main>

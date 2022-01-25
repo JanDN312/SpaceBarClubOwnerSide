@@ -1,26 +1,63 @@
 <script>
+  //https://svelte.dev/tutorial/component-events
+  import {createEventDispatcher} from 'svelte';
 
   export let dateID;
   export let dateHeading;
 
+  let appointmentDetails = {
+    location: "",
+    hours: "",
+    minutes: "",
+  }
+
+  const dispatch = createEventDispatcher();
+  
 </script>
 
 
 
 <section>
+  <form method="post"
+      id={dateID}>
+      
+    <!-- Closing Box for TDL-->
     <div id="close_cont">
-      <span class="close"
-        title="Close"
-        on:click>
+      <span on:click = {() => dispatch('modalClose')}
+          class="close"
+          title="Close">
         &times;
       </span>
     </div>
 
+    
     <div id="myDIV" class="header">
-      <h1>My Appointments!</h1>
-        <h1>{dateHeading}</h1>
-        <input type="text" id="myInput" placeholder="Title...">
-        <span onclick="newElement()" class="addBtn">Add</span>
+      <h1>My Appointments for</h1>
+      <h2>{dateHeading}</h2>
+      <input type="text" 
+              id="location_input" 
+              placeholder="WHERE?" 
+              required
+              bind:value={appointmentDetails.location}>
+      <div>
+        <input type="number" 
+                id="hour_input" 
+                placeholder="HOURS?"
+                min="1"
+                max="12"
+                required
+                bind:value={appointmentDetails.hours}>
+        <input type="number" 
+                id="min_input" 
+                placeholder="MINUTES?"
+                min="1"
+                max="60"
+                required
+                bind:value={appointmentDetails.minutes}>
+      </div>
+      <div>
+        <button class="primary-btn">ADD</button>
+      </div>
     </div>
       
       <ul id="myUL">
@@ -28,9 +65,8 @@
         <li class="checked">Pay bills</li>
         <li>Meet George</li>
         <li>Buy eggs</li>
-        <li>Read a book</li>
-        <li>Organize office</li>
       </ul>
+  </form>
 </section>
 
 

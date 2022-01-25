@@ -53,7 +53,7 @@
                 id="hour_input" 
                 placeholder="HOURS?"
                 min="1"
-                max="12"
+                max="24"
                 required
                 bind:value={appointmentDetails.hours}>
         <input type="number" 

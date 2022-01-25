@@ -5,6 +5,14 @@
 
 
 <section>
+    <div id="close_cont">
+      <span class="close"
+        title="Close"
+        on:click>
+        &times;
+      </span>
+    </div>
+
     <div id="myDIV" class="header">
         <h2>My To Do List</h2>
         <input type="text" id="myInput" placeholder="Title...">
@@ -140,4 +148,17 @@ input {
 .addBtn:hover {
   background-color: #bbb;
 }
+
+.close{
+  position: relative;
+  font-size: 3rem;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.close:hover{
+  background-color: #f44336;
+}
+
 </style>

@@ -1,9 +1,11 @@
 <script>
 	import Calendar from './Calendar.svelte'
+	import Appointments from './Appointments.svelte'
 </script>
 
 <main>
 	<Calendar/>
+	<Appointments/>
 </main>
 
 

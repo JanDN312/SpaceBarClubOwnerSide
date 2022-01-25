@@ -7,4 +7,6 @@ cd my-svelte-project
 npm install
 npm run dev
 
-The .html and .css template were used from w3school (https://www.w3schools.com/howto/howto_css_calendar.asp)
+The .html and .css templates were used from w3school: 
+Calendar template: (https://www.w3schools.com/howto/howto_css_calendar.asp) 
+To Do List template: (https://www.w3schools.com/howto/howto_js_todolist.asp)

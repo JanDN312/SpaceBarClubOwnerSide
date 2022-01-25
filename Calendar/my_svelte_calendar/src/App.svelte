@@ -1,17 +1,54 @@
 <script>
-	export let name;
+	const date = new Date();
+
+	// Console: DatetimeObject Year/Month/Date/Day
+	$: console.log(`Current Year: ${date.getFullYear()}`);
+	$: console.log(`Current Month Index (i.e. JAN -> 0): ${date.getMonth()}`);
+	$: console.log(`Current Date Index: ${date.getDate()}`);
+	// .getDay() gives day index: Sunday - Saturday: 0 - 6
+	// https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
+	$: console.log(`Current Day Index (i.e. Di -> 2): ${date.getDay()}`);
+
+	let year = date.getFullYear();
+
+	// Liste der Monate damit .getMonth() dem Index den passenden String zuweisen kann
+	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
+	// Change month Index here manually to check if values are true...
+	let monthIndex = date.getMonth();
+	$: month = monthNames[monthIndex];
+	$: console.log(`Current Month as String: ${month}`);
+
+	// Liste der Tage damit .getDay() dem Index den passenden String zuweisen kann
+	// ACHTUNG, Zählung beginnt mit Sonntag: Sunday - Saturday == 0 - 6 
+	const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	let dayIndex = date.getDay();
+	$: day = dayNames[dayIndex];
+	$: console.log(`Current Day as String: ${day}`);
+
+	$: firstDayIndex = new Date(year, monthIndex).getDay();
+	$: console.log(`First Day Index: ${firstDayIndex}\n(Sunday - Saturday = 0 - 6)`);
+
+	$: numberOfDays = new Date(year, monthIndex+1, 0).getDate();
+	$: console.log(`Number of Days per Month: ${numberOfDays}`);
+	// Check via console if dates are correct 
+	//$: console.log(`${year}, ${month}, ${date.getDate()}`)
+	//$: console.log(`FIRST DAY INDEX: ${firstDayIndex}`)
+	//$: console.log(`HOW MANY DAYS: ${numberOfDays}`)
+
 </script>
 
 <main>
-	<!--<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>-->
+	<!-- from template...
+	<h1>Hello {name}!</h1>
+	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	-->
 
 	<div class="month">
 		<ul>
 			<li class="prev">&#10094;</li>
 			<li class="next">&#10095;</li>
-			<li>August<br>
-				<span style="font-size:18px">2021</span></li>
+			<li>{month}<br>
+				<span style="font-size:18px">{year}</span></li>
 		</ul>
 	</div>
 
@@ -26,18 +63,9 @@
 	</ul>
 
 	<ul class="days">
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
-		<li>6</li>
-		<li>7</li>
-		<li>8</li>
-		<li>9</li>
-		<li><span class="active">10</span></li>
-		<li>11</li>
-		...etc
+		{#each Array(25) as _, i}
+		<li>{i}</li>
+		{/each}
 	</ul>
 </main>
 

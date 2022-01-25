@@ -5,14 +5,17 @@ const dataloader = new Datareader()
 
 async function getResponse( reqinput: Request){
   //INFO reqinput muss als input string mit der NameID sein, damit dann im Datensatz danach gesucht werden kann
-
+  console.log("-----")
   console.log(JSON.stringify(reqinput.text))
+  console.log("-----")
   
   return dataloader.readDataElement(await reqinput.text())}//Hier funktioniert das convertieren nicht, entweder ist reqinput leer, oder es lässt sich nicht convertieren
 
 for await(const conn of listener)
   handleNewConnection(conn);async function handleNewConnection(conn: Deno.Conn) {
   for await(const {request:req, respondWith:res} of Deno.serveHttp(conn)) {
+    console.log(req)
+    console.log(typeof(req))
     res(new Response((await getResponse(req))));
   }
 }

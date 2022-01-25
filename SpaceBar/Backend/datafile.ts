@@ -7,7 +7,7 @@ export class Datareader {
     constructor(){
         this.loadedState=false;
         this.getloadData("testdata.json").then(()=>{
-            console.log(this.loadedData);
+            //console.log(this.loadedData);
             this.loadedState=true;
             this.loadedData=this.loadedData["elements"]
         })
@@ -26,8 +26,10 @@ export class Datareader {
         try{
             for(const element in this.loadedData){
                 //console.log(this.loadedData[element]["NameID"])
-                //console.log(input)
                 if(this.loadedData[element]["NameID"] === input){
+                    console.log("++++++")
+                    console.log(this.loadedData[element])
+                    console.log("++++++")
                     //console.log(this.loadedData[element])
                     return this.loadedData[element]}//Wenn das element gefunden wird, wird das gesamte Set wiedergegeben
             }

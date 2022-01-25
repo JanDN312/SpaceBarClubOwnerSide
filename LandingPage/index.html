@@ -17,18 +17,34 @@
             <form>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input (keyup)="console.log($event.target.value)" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                   <small id="emailHelp" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button id="submitID" type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
         </div>
     </section><!-- Betreiber Login section-->
+    <script>
+      let inputUnPw=[];
+      const loginSubmit=(ev)=>{
+        ev.preventDefault();
+        letinputUnPw={
+          username: document.getElementById("exampleInputEmail1").value,
+          password: document.getElementById("exampleInputPassword1").value
+        }
+        console.log(letinputUnPw)
+
+        //document.forms[0].reset();
+      }
+      document.addEventListener("DOMContentLoaded", ()=>{
+        document.getElementById("submitID").addEventListener("click", loginSubmit)
+      })
+    </script>
     
 </body>
 </html>

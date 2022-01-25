@@ -4,12 +4,24 @@
 
 	
 	let appointmentShowing = false;
+	let dateID = "";
+	let dateHeading = "";
+
 	// Open and Close TDL via true and false
-	const openAppointment = () => {
+	const openAppointment = (e) => {
 		appointmentShowing = true;
+		dateID = e.target.dataset.dateid;
+		makeDateHeading();
 	}
+
 	const closeAppointment = () => {
 		appointmentShowing = false;
+	}
+
+	const makeDateHeading = () => {
+		let dateAsHeading = dateID
+		return dateAsHeading
+		//console.log(dateAsHeading)
 	}
 
 </script>

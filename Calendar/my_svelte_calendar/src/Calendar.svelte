@@ -58,7 +58,6 @@
 		monthIndex += 1;
 	}
 
-
 	$: console.log(`Today: ${currentDay.year} ${monthNames[currentDay.month]} ${currentDay.date} ${dayNames[currentDay.day]}`)
 	$: console.log(`Calendar: ${year} ${month}\nFirst day: ${dayNames[firstDayIndex]}\nNumber of days: ${numberOfDays}`)
 </script>
@@ -103,8 +102,10 @@
 			<li></li>
 			{:else}
 				<!-- :active soll das heutige Datum highlighten-->
+				<!-- data-dateID erstellt eine gesonderte ID für jeden einzelnen Tag, siehe F12 elements-->
 				<li class:active={i === currentDay+(firstDayIndex-1)}
-				on:click>
+				on:click
+				data-dateID={`${month}_${i - firstDayIndex +1}_${year}`}>
 				{i - firstDayIndex +1}</li>
 			{/if}
 		{/each}

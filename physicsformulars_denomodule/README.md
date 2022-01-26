@@ -1,14 +1,14 @@
 # Physical Formular Calculator(Power, Energie, Movements)
-
+```
 This module allows you too calculate every variable of given formulars. You simply chose the function for the missing value and type in the inputvalues in SI-units. Every function shows which parameters are necessary to compute the outcome. Also every variable of the underlaying formular is short-included in the name. 
-
+```
 ## Usage via Commandline
-
+```
 deno run --allow-net https://deno.land/x/physics_formulars/test.ts
-
+```
 
 ## Steady Motion Formulars - Usage Example
-
+```
 import {SteadyMovementFormulars as smf} from "./src/steadymovements.ts"
 
 var time=10
@@ -23,11 +23,11 @@ console.log("Time")
 console.log(smf.getTimeDVT_SM(distance, velocity))
 console.log("Velocity")
 console.log(smf.getVelocityDVT_SM(distance, time))
-
+```
 
 
 ## Accelerated Motion Formulars - Usage Example
-
+```
 import {AcceleratedMovementFormulars as amf} from "./src/acceleratedmovements.ts"
 
 var distance= 1000          //in meter
@@ -42,11 +42,11 @@ console.log("Distance:")
 console.log(amf.getDistanceDAT_AM(acceleration, time))
 console.log("Time:")
 console.log(amf.getTimeDAT_AM(distance,acceleration))
-
+```
 
 
 ## Power Formulars - Usage Example
-
+```
 import {PowerFormulars as pm} from "./src/forceformulars.ts"
 
 var power=20                //in newton
@@ -61,11 +61,11 @@ console.log("Mass:")
 console.log(pm.getMassPMA_FF(power, acceleration))
 console.log("Power")
 console.log(pm.getPowerPMA_FF(mass, acceleration))
-
+```
 
 
 ## Energy Formulars - Usage Example
-
+```
 import {EnergyFormulars as ef} from "./src/energyformulars.ts"
 
 var energy= 300             //in joule
@@ -80,3 +80,4 @@ console.log("Height")
 console.log(ef.getHeightEMH_PotentialEnergy(mass, energy))
 console.log("Mass")
 console.log(ef.getMassEMH_PotentialEnergy(height, energy))
+```

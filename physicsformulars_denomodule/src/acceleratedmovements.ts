@@ -26,4 +26,12 @@ export class AcceleratedMovementFormulars{
         return (velocity**2)/(2*9.80665)}
     public static getFallVelocityDV_AM(distance:number){
         return (2*distance*9.80665)**0.5}
+
+    //velocity=acceleration*time SI(m,s) VAT_SM Velocity,Acceleration,Time _ Accelerated Motion
+    public static getAccelerationVAT_AM(velocity:number, time:number) {
+        return velocity/time}
+    public static getVelocityVAT_AM(acceleration:number, time:number){
+        return acceleration*time}
+    public static getTimeVAT_AM(velocity:number, acceleration:number){
+        return velocity/acceleration}
 }

@@ -1,6 +1,6 @@
 # Physical Formular Calculator(Power, Energie, Movements)
 
-This module allows you too calculate every variable of given formulars. You simply chose the function for the missing value and type in the inputvalues in SI-units. Every function shows which parameters are necessary to compute the outcome. Also every variable of the underlaying formular is short-included in the name. 
+This module allows you to calculate every variable of given formulars. You simply chose the function for the missing value and type in the inputvalues in SI-units. Every function shows which parameters are necessary to compute the outcome. Also every variable of the underlaying formular is short-included in the name. 
 
 
 ## Usage via Commandline

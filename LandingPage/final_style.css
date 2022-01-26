@@ -1,0 +1,362 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300&display=swap');
+
+:root{
+    --primary: rgb(252,183,62,255);
+    --secondary: rgba(41, 2, 47, 1.0);
+    --tertiary: linear-gradient(150deg, rgba(0,0,0,1) 50%, rgba(84,5,89,0.5) 80%, rgba(14,4,94,1) 100%);
+    --black: black;
+    --white: white;
+    --box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+}
+
+/* General START*/
+/* Buttons */
+.btn-primary{
+    border-color: white;
+    background-color: var(--secondary);
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 1rem;
+}
+.btn-primary:hover{
+    background-color: var(--primary);
+    color: black;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.8);
+}
+.btn-secondary{
+    border-color: white;
+    background-color: rgb(120, 116, 122);
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 1rem;
+}
+.btn-secondary:hover{
+    background-color: rgb(120, 116, 122);
+    box-shadow: 0 10px 10px rgba(0,0,0,0.8);
+}
+/* Fonts */
+h1{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+}
+h2{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+p{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+/* Sections */
+section{
+    margin-top: 0px;
+    margin-bottom: 100px;
+}
+/* General END*/
+
+
+/* Navbar START */
+.navbar{
+    box-shadow: var(--box-shadow);
+}
+.nav-item:hover{
+    font-size: 20px;
+    font-family: 'Orbitron';
+}
+.navbar-brand img{
+    height: 64px;
+    width: 64px;
+}
+/* Navbar END */
+
+/* Hero START */
+body .hero{
+    background-color: black;
+}
+.hero {
+    background-color: black;
+    background: linear-gradient(150deg, rgba(0,0,0,1) 50%, rgba(84,5,89,0.5) 80%, rgba(14,4,94,1) 100%);
+    background-attachment: fixed;
+    color: white;
+}
+.hero video{
+    padding: 32px;
+    height: 100%;
+    width: 100%;
+}
+.hero button{
+    margin-top: 25px;
+    width: 400px;
+    font-size: large;
+    background-color: var(--tertiary);
+}
+.iframe-container{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    margin-top: 100px;
+  }
+  .iframe-container iframe{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+/* Hero END */
+
+/* Services START*/
+section .service{
+    margin-top: 100px;
+}
+.service .iconbox{
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    background-color: black;
+    background: rgba(41, 2, 47, 1.0);
+    font-size: 75px;
+    border-radius: 100px;
+    margin-top: 50px;
+}
+/* Services END */
+
+/* Customer Start */
+.customer_section a{
+    text-decoration: none;
+    color: black;
+}
+.customer_section h1{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.customer_section h2{
+    margin-bottom: 50px;
+    text-decoration: underline;
+    text-decoration-color: var(--primary);
+}
+.customer_section h3{
+    font-family: 'Roboto', sans-serif;
+}
+.customer{
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(0,0,0,1.0);
+    padding: 25px;
+    border-radius: 1rem;
+}
+.customer:after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: var(--secondary);
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+.customer:hover{
+    transition: all 0.5 ease;
+    color: white;
+    transform: translateY(10px);
+}
+.customer:hover::after{
+    opacity: 1;
+    top: 0;
+}
+/* Customer END */
+
+/* Steps START */
+body .steps_section{
+    padding: 100px;
+    background: linear-gradient(150deg, rgba(0,0,0,1) 20%, rgba(84,5,89,0.9) 60%, rgba(14,4,94,1) 100%);
+    background-color: black;
+    opacity: 0.975;
+    color: white;
+}
+.steps_section h1{
+    margin-top: 100px;
+    margin-bottom: 0px;
+}
+.steps_section h2{
+    font-size: 1.7rem;
+}
+.steps_section img{
+    width: 50%;
+    height: 50%;
+}
+.steps_section .iconbox{
+    margin-right: 24px;
+    margin-bottom: 12px;
+}
+.steps_section i{
+    font-size: 100px;
+}
+.steps_section .step{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.steps_section .row{
+    padding: 10px;
+}
+/* Steps END */
+
+
+/* Download Start */
+.download_section h1{
+    margin-bottom: 50px;
+}
+.download_section h2{
+    margin-top: 50px;
+}
+.download_section img{
+    text-align: center;
+    width: 70%;
+}
+/* Download END */
+
+/* Profil START
+.profile_section .form-group{
+    margin-bottom: 20px;
+}
+body .profile_section{
+    overflow-y: hidden;
+    background: white;
+}
+
+.rocket {
+    margin-top: 50px;
+    height: 300px;
+    position:relative;
+}
+.rocket:hover {
+    margin-top: 50px;
+    height: 300px;
+    animation: fly 2s 0.2s ease-in;
+}
+@keyframes fly {
+    0% {
+        bottom: 00px;
+    }
+
+    100% {
+        bottom: 100%;
+    }
+}
+/* Profil END */
+
+/* Team START */
+body .team_section{
+    margin-bottom: 100px;
+    background-color: black;
+    background: linear-gradient(150deg, rgba(0,0,0,1) 0%, rgba(84,5,89,0.9) 30%, rgba(14,4,94,1) 100%);
+}
+.team img{
+    height: 15rem;
+    width: 15rem;
+    border-radius: 100%;
+    margin-bottom: 50px;
+}
+.team_section .card-effect {
+    box-shadow: 0 8px 22px rgba(0,0,0,1.0);
+    background-color: transparent;
+    padding: 25px;
+    transition: all 0.35 ease;
+}
+.team_section .card-effect:hover{
+    box-shadow: 0 10px 100px var(--primary);
+    transform: translateY(5px);
+}
+.team_section .social-icons a{
+    font-size: 40px;
+    color: var(--primary);
+}
+.team_section h1{
+    margin-top: 100px;
+    margin-bottom:50px;
+    color: white;
+}
+.team_section h2{
+    color: white;
+    margin-bottom: 100px;
+}
+.team_section h3{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+/* Team END */
+
+/* Contact START*/
+.contact_section{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.contact_section i{
+    font-size: 10rem;
+    color: var(--secondary);
+    border-radius: 5%;
+    margin-bottom: 30px;
+}
+.contact_section i:hover{
+    color: var(--primary);
+}
+.contact_section h1{
+    margin-bottom: 30px;
+}
+.contact_section h2{
+    margin-bottom: 30px;
+}
+.contact_section .message_box{
+    margin-top: 60px;
+}
+.contact_section button{
+    width: 200px
+}
+/* Contact END*/
+
+/* Footer START */
+body footer{
+    background-color: black;
+}
+footer{
+    padding-top: 25px;
+    padding-bottom: 0px;
+    /*background: linear-gradient(150deg, rgba(0,0,0,1) 5%, rgba(84,5,89,0.9) 25%, rgba(14,4,94,1) 100%);*/
+    opacity: 0.75;    
+}
+footer img{
+    height: 10rem;
+    width: 10rem;
+    margin-bottom: 25px;
+}
+footer img:hover{
+    box-shadow: 0 8px 80px var(--primary);
+}
+footer h1{
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 24px;
+}
+footer p{
+    color: white;
+}
+footer .social-icons{
+    margin: auto;
+    font-size: 40px;
+}
+/* Footer END */
+
+

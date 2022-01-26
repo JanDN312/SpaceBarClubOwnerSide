@@ -1,4 +1,4 @@
-export class ForceFormulars{
+export class PowerFormulars{
     //Power=mass*acceleration SI(Newton,m,s)---- general formular ---Power,Mass,Acceleration_ForceFormulars
     public static getPowerPMA_FF(mass:number, acceleration:number){
         return mass*acceleration}

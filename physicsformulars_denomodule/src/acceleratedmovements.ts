@@ -15,7 +15,15 @@ export class AcceleratedMovementFormulars{
     public static getAccelerationDVA_AM(distance:number, velocity:number){
         return(velocity**2)/(2*distance)}
     
-    //distance=0,5*gravityacceleration
-    public static  getDistanceDA_AM(acceleration:number, distance:number){
-        return}
+    //distance=0,5*gravityacceleration* time^2 SI(m,s) DT_AM Distance,Time _ Accelerated Motion
+    public static  getFallDistanceDT_AM(time:number){
+        return 0.5*9.80665*(time**2)}
+    public static  getFallTimeDT_AM(distance:number){
+        return (2*distance/9.80665)**0.5}
+
+    //distance=(velocity^2)/(2*gravityacceleration) SI(m,s) DV_AM Distance,Velocity _ Accelerated Motion
+    public static getFallDistanceDV_AM(velocity:number){
+        return (velocity**2)/(2*9.80665)}
+    public static getFallVelocityDV_AM(distance:number){
+        return (2*distance*9.80665)**0.5}
 }

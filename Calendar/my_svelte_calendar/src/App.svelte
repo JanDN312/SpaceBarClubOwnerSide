@@ -3,11 +3,7 @@
 	import Appointments from './Appointments.svelte'
 
 	let schedule = {
-		January_19_2022: [
-			{id:1, location: "Kombinat", time:"20:30"}, 
-			{},
-			{}
-		]
+		
 	};
 
 	
@@ -35,7 +31,6 @@
 
 	const setAppt = (e) => {
 		let time = `${e.detail.hours}:${e.detail.minutes}`;
-		console.log(time)
 
 		// Create new Appointment with the Details and add it to schedule Object
 		let newAppt = {
@@ -49,7 +44,7 @@
 			schedule[dateID] = [newAppt];
 		} else {
 			let currentAppointments = schedule[dateID];
-			schedule[dateID] = [...currentAppointments, newAppt]
+			schedule[dateId] = [...currentAppointments, newAppt]
 		}
 	}
 

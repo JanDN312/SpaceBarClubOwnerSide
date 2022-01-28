@@ -24,4 +24,3 @@ export class FiatConverter_fromAPI {
         })
     }
 }
-export let FiatConverter = new FiatConverter_fromAPI()

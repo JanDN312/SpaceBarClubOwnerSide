@@ -1,71 +1,103 @@
 <script>
-	import Calendar from './Calendar.svelte'
-	import Appointments from './Appointments.svelte'
-
-	let schedule = {
-		
-	};
-
+	import { onDestroy } from 'svelte';
+	import scheduleStore from './schedule-store.js';
+	import Calendar from './Calendar.svelte';
+	import Scheduler from './Scheduler.svelte';
 	
-	let appointmentShowing = false;
+	let schedule = {};
+	const unsubscribe = scheduleStore.subscribe(currState => {
+		schedule = currState;
+		// localStorage.setItem("storedSchedule", schedule)
+	});
+	
+	onDestroy(() => {
+		if (unsubscribe) unsubscribe();
+	});
+	
+	let schedulerShowing = false;	
 	let dateID = "";
 	let dateHeading = "";
 
-	// Open and Close TDL via true and false
-	const openAppointment = (e) => {
-		appointmentShowing = true;
-		dateID = e.target.dataset.dateid;
-		makeDateHeading();
-	}
-
+	$: appointments = schedule[dateID];
+	
 	const makeDateHeading = () => {
 		let dateAsHeading = dateID.replace(/_/g, " ");
 		let date = new Date(`${dateAsHeading}`);
 		return dateHeading = date.toLocaleString("en-US", {day: 'numeric', month: 'long', year: 'numeric'} );
-		//console.log(dateAsHeading)
 	}
-
-	const closeAppointment = () => {
-		appointmentShowing = false;
+	
+	const handleScheduler = (e) => {
+		schedulerShowing = true;
+		dateID = e.target.dataset.dateid;
+		makeDateHeading();
 	}
-
-	const setAppt = (e) => {
-		let time = `${e.detail.hours}:${e.detail.minutes}`;
-
-		// Create new Appointment with the Details and add it to schedule Object
+	
+	const removeEmptyDate = () => {
+		if (schedule[dateID] && schedule[dateID].length === 0) {
+			scheduleStore.update(currDataState => {
+				delete currDataState[dateID];
+				return currDataState
+			});
+		}
+		return;
+	}
+	
+	const closeScheduler = () => {
+		schedulerShowing = false;
+		removeEmptyDate();
+	}
+	
+	const setApptToSch = (e) => {
+		//console.log(e.detail)
+		let time = `${e.detail.hour}:${e.detail.minutes < 10 ? '0'+e.detail.minutes : e.detail.minutes}${e.detail.amOrPM}`;
+		
 		let newAppt = {
-			// Create a random ID per Appointment
-			id: Math.floor(Math.random() * 1000000000),
-			location: e.detail.location, 
-			time,
-		}
-
+			id: Math.floor(Math.random() * 1000000),
+			eventname: e.detail.eventName,
+			time: time === ":0" ? "no time set" : time,
+			completed: false
+		};
+		
 		if (!schedule[dateID]) {
-			schedule[dateID] = [newAppt];
+			scheduleStore.update(currState => { 
+				currState[dateID] = [newAppt]; 
+				return currState 
+			})
 		} else {
-			let currentAppointments = schedule[dateID];
-			schedule[dateId] = [...currentAppointments, newAppt]
+			scheduleStore.update(currState => {
+				let currDayAppts = currState[dateID];
+				currState[dateID] = [...currDayAppts, newAppt];
+				return currState 
+			})
 		}
+		
+// 		if (!schedule[dateID]) {
+// 			schedule[dateID] = [newAppt];
+// 			console.log("First and only appt of this day entered");
+// 		} else {
+// 			let currSchedAppts = schedule[dateID];
+// 			schedule[dateID] = [...currSchedAppts, newAppt]
+// 		}	
 	}
-
+	
 	$: console.log(schedule)
 </script>
 
 
-
 <main>
-	<!--Show TDL only on calendar click, no TDL on default (false)-->
-	<Calendar on:click={openAppointment}/>
-	{#if appointmentShowing}
-		<Appointments on:modalClose={closeAppointment} 
-						on:addAppt={setAppt}
-						{dateID} 
-						{dateHeading}/>
-	{/if}
-</main>
+	<Calendar on:click={handleScheduler}
+						{schedule} />
+		{#if schedulerShowing}
+			<Scheduler on:modalClose={closeScheduler}
+								 on:addAppt={setApptToSch}
+								 {dateID}
+								 {dateHeading}
+								 {appointments}
+									/>
+		{/if}
+</main>	
 
-
-
+				
 <style>
-
+	main {font-family: Verdana, sans-serif;}
 </style>

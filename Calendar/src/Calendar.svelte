@@ -1,88 +1,57 @@
 <script>
+	export let schedule;
 	const date = new Date();
-
-	// Console Tests: DatetimeObject Year/Month/Date/Day
-	//$: console.log(`Current Year: ${date.getFullYear()}`);
-	//$: console.log(`Current Month Index (i.e. JAN -> 0): ${date.getMonth()}`);
-	//$: console.log(`Current Date Index: ${date.getDate()}`);
-	//$: console.log(`Current Day Index (i.e. Di -> 2): ${date.getDay()}`);
-
-	// Create a constant of the current date
-	const currentDay = {
-		year: date.getFullYear(),
+	
+	const today = {
+		dayNumber: date.getDate(),
 		month: date.getMonth(),
-		date: date.getDate(),
-		day: date.getDay(),
+		year: date.getFullYear(),
 	}
 	
-	let year = date.getFullYear();
-
-	// Liste der Monate damit .getMonth() dem Index den passenden String zuweisen kann
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
-	// Change month Index here manually to check if values are true...
+	const monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	let monthIndex = date.getMonth();
+	// const currentMonth = date.toLocaleString('en-US', { month: 'long' })
 	$: month = monthNames[monthIndex];
-
-	// Liste der Tage damit .getDay() dem Index den passenden String zuweisen kann
-	// ACHTUNG, Zählung beginnt mit Sonntag: Sunday - Saturday == 0 - 6 
-	// https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
-	const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	let dayIndex = date.getDay();
-	$: day = dayNames[dayIndex];
-
-	// For the firstDayIndex we give year and monthIndex and the 1 means we want the FIRST Day in the .getDay() function
-	// Achtung!!! (Indexierung: Sunday - Saturday = 0 - 6)`)
+	
+	let year = date.getFullYear();
+	
 	$: firstDayIndex = new Date(year, monthIndex, 1).getDay();
-	//$: console.log(`First Day Index: ${firstDayIndex}\n(Sunday - Saturday = 0 - 6)`);
-
-	// For the numberOfDays we give year and monthIndex and the 0 means we want the LAST Day of the previous month in the .getDate() function
+	// const currentDay = date.getDate();
 	$: numberOfDays = new Date(year, monthIndex+1, 0).getDate();
-	//$: console.log(`Number of Days per Month: ${numberOfDays}`);
-
-
-	// Define click functionality for prevMonth and nextMonth
-	// simply decrement and increment monthIndex and year, respectively
-	const prevMonth = () => {
+	
+	$: calendarCellsQty = firstDayIndex <= 4 ? 35 : 42;	
+	
+	const goToNextMonth = () => {
+		if (monthIndex >= 11) {
+			year += 1;
+			return monthIndex = 0;
+		}
+		return monthIndex += 1;
+	}
+	
+	const goToPrevMonth = () => {
 		if (monthIndex <= 0) {
 			year -= 1;
 			return monthIndex = 11;
 		}
 		return monthIndex -= 1;
 	}
-
-	const nextMonth = () => {
-		if (monthIndex >= 11) {
-			year += 1;
-			return monthIndex = 0
-		}
-		monthIndex += 1;
-	}
-
-	$: console.log(`Today: ${currentDay.year} ${monthNames[currentDay.month]} ${currentDay.date} ${dayNames[currentDay.day]}`)
-	$: console.log(`Calendar: ${year} ${month}\nFirst day: ${dayNames[firstDayIndex]}\nNumber of days: ${numberOfDays}`)
+	
+// 	$: console.log(`${month}, ${today.dayNumber}, ${year}, FIRST DAY index is ${firstDayIndex}, MONTH index is ${monthIndex}, No. of days: ${numberOfDays}`)
 </script>
 
 
-
-
-
-<main>
-	<!-- from template...
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	-->
-
 	<div class="month">
 		<ul>
-			<li class="prev" on:click={prevMonth}>&#10094;</li>
-			<li class="next" on:click={nextMonth}>&#10095;</li>
+			<li class="prev" on:click={goToPrevMonth}>&#10094;</li>
+			<li class="next" on:click={goToNextMonth}>&#10095;</li>
 			<li>{month}<br>
-				<span style="font-size:18px">{year}</span></li>
+				<span style="font-size:18px">{year}</span>
+			</li>
 		</ul>
 	</div>
 
 	<ul class="weekdays">
-		<!-- Sunday needs to be first due to the DateTimeObject indexing!-->
 		<li>Su</li>
 		<li>Mo</li>
 		<li>Tu</li>
@@ -93,104 +62,104 @@
 	</ul>
 
 	<ul class="days">
-		<!--Create a loop for the days
-		substract the amount of firstDayIndex (results in negative numbers in the beginning) 
-		and the first day of the month starts with 0 (therefore add +1 to i)-->
-		{#each Array(numberOfDays + firstDayIndex) as _, i}
-			<!--Create if clause and remove negative numbers and 0 from the layout-->
-			{#if i < firstDayIndex}
-			<li></li>
+		{#each Array(calendarCellsQty) as _, i}
+			{#if i < firstDayIndex || i >= numberOfDays+firstDayIndex  }
+				<li>&nbsp;</li>
 			{:else}
-				<!-- :active soll das heutige Datum highlighten-->
-				<!-- data-dateID erstellt eine gesonderte ID für jeden einzelnen Tag, siehe F12 elements-->
-				<li class:active={i === currentDay+(firstDayIndex-1)}
-				on:click
-				data-dateID={`${month}_${i - firstDayIndex +1}_${year}`}>
-				{i - firstDayIndex +1}</li>
+				<li class:active={i === today.dayNumber+(firstDayIndex-1) &&
+													monthIndex === today.month &&
+													year === today.year}
+						data-dateID={`${month}_${(i-firstDayIndex)+1}_${year}`}
+						class:has-appts={`${month}_${(i-firstDayIndex)+1}_${year}` in schedule}
+						on:click>
+					{(i - firstDayIndex) + 1}
+				</li>
 			{/if}
 		{/each}
 	</ul>
-</main>
 
 
-
-
-
+				
 <style>
 	ul {list-style-type: none;}
-	body {font-family: Verdana, sans-serif;}
 
 	/* Month header */
 	.month {
-	padding: 70px 25px;
-	width: auto;
-	background: #1abc9c;
-	text-align: center;
+		padding: 70px 25px;
+		width: auto;
+		background: #1abc9c;
+		text-align: center;
 	}
 
 	/* Month list */
 	.month ul {
-	margin: 0;
-	padding: 0;
+		margin: 0;
+		padding: 0;
 	}
 
 	.month ul li {
-	color: white;
-	font-size: 20px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
+		color: white;
+		font-size: 20px;
+		text-transform: uppercase;
+		letter-spacing: 3px;
 	}
 
 	/* Previous button inside month header */
 	.month .prev {
-	float: left;
-	padding-top: 10px;
-	cursor: pointer;
+		float: left;
+		padding-top: 10px;
+		cursor: pointer;
 	}
 
 	/* Next button */
 	.month .next {
-	float: right;
-	padding-top: 10px;
-	cursor: pointer;
+		float: right;
+		padding-top: 10px;
+		cursor: pointer;
 	}
 
 	/* Weekdays (Mon-Sun) */
 	.weekdays {
-	margin: 0;
-	padding: 10px 0;
-	background-color:#ddd;
+		margin: 0;
+		padding: 10px 0;
+		background-color:#ddd;
 	}
 
 	.weekdays li {
-	display: inline-block;
-	width: 13.6%;
-	color: #666;
-	text-align: center;
+		display: inline-block;
+		width: 13.6%;
+		color: #666;
+		text-align: center;
 	}
 
 	/* Days (1-31) */
 	.days {
-	padding: 10px 0;
-	background: #eee;
-	margin: 0;
-	cursor: pointer;
+		padding: 10px 0;
+		background: #eee;
+		margin: 0;
 	}
 
 	.days li {
-	list-style-type: none;
-	display: inline-block;
-	width: 13.6%;
-	text-align: center;
-	margin-bottom: 5px;
-	font-size:12px;
-	color: #777;
+		list-style-type: none;
+		display: inline-block;
+		border: 1px solid black;
+		padding: 9px;
+		width: 11.6%;
+		text-align: center;
+		margin-bottom: 1px;
+		font-size: 1.2rem;
+		color: #777;
+		cursor: pointer;
 	}
 
 	/* Highlight the "current" day */
 	.active {
-	padding: 0px;
-	background: #1abc9c;
-	color: white !important
+		padding: 5px;
+		background: #F2EB16;
+		color: white;
+	}
+	
+	.days li.has-appts {
+		color: #F2480A;
 	}
 </style>

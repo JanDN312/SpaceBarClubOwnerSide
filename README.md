@@ -10,6 +10,7 @@ Physics Formulas (Jan Neifeld): https://deno.land/x/physics_formulas@2.0.0
 K-Means (Jan Neifeld): https://deno.land/x/k_means_algorithm@1.1.4                 
 Encryption (Constantin Rech): https://deno.land/x/encryption_lib@0.1.0             
 Currency-Converter (Michel Medved): https://deno.land/x/currency_converter@v0.9.1  
+
 Die älteren Versionen der Module sind noch in dem https://github.com/JanDN312/SpaceBarClubOwnerSide Repo enthalten, zur Betrachtung bitten wir jedoch die aktuellsten Versionen in den seperaten Repositories zu betrachten.
 
 # Auflistung der anderen Aktivitäten:

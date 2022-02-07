@@ -8,10 +8,11 @@ Im Laufe der Zeit haben wir uns dann aber entschieden zumindest jeder mal ein De
 Währenddessen haben wir uns bei Problemen untereinander jedoch auch in diesen Themen geholfen.
 
 # Veröffentlichte Deno-Module:
-Physics Formulas (Jan Neifeld): https://deno.land/x/physics_formulas@2.0.0       
-K-Means (Jan Neifeld): https://deno.land/x/k_means_algorithm@1.1.4                 
-Encryption (Constantin Rech): https://deno.land/x/encryption_lib@0.1.0             
-Currency-Converter (Michel Medved): https://deno.land/x/currency_converter@v0.9.1  
+Physics Formulas (Jan Neifeld): https://deno.land/x/physics_formulas      
+K-Means (Jan Neifeld): https://deno.land/x/k_means_algorithm
+Distance Calculator (Jan Neifeld): https://deno.land/x/distance_calculator                 
+Encryption (Constantin Rech): https://deno.land/x/encryption_lib            
+Currency-Converter (Michel Medved): https://deno.land/x/currency_converter 
 
 Die älteren Versionen der Module sind noch in dem https://github.com/JanDN312/SpaceBarClubOwnerSide Repo enthalten, zur Betrachtung bitten wir jedoch die aktuellsten Versionen in den seperaten Repositories zu betrachten.
 
